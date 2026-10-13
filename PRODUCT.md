@@ -19,7 +19,7 @@ A digital business card per staff member. Success is the customer saving the con
 
 ## Capabilities and Constraints
 - Static site on GitHub Pages: plain HTML, CSS and JavaScript, no backend, no build step.
-- "Save Contact" uses an Android Contacts intent on Android and a generated vCard 3.0 (with photo) elsewhere; "Download contact file" always uses the vCard.
+- "Save Contact" uses a generated vCard 3.0 (with photo): opened as a data: URL on iPhone/iPad, downloaded on Android and computers (followed by a "open the file" message). "Download contact file" always downloads it. An Android Contacts intent link was tried and dropped: Chrome on Android won't open the Contacts insert screen from a web page.
 - Contacts are maintained by hand by non-developers editing `contacts.json`, so any field except id and names may be missing.
 
 ## Brand Commitments

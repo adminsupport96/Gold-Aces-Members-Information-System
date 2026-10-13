@@ -29,21 +29,21 @@
 
         <!-- Card face -->
         <section id="face" class="side face" hidden>
-          <!-- Corner indices: the person's initials over the spade, like an ace -->
+          <!-- Corner indices: "A" over the spade, like an ace -->
           <div class="index index-top" aria-hidden="true">
-            <span class="index-initials"></span>
+            <span class="index-rank">A</span>
             <img src="assets/spade.svg" alt="" width="100" height="112">
           </div>
           <div class="index index-bottom" aria-hidden="true">
-            <span class="index-initials"></span>
+            <span class="index-rank">A</span>
             <img src="assets/spade.svg" alt="" width="100" height="112">
           </div>
 
           <img class="logo" src="assets/gold-aces-logo-light.png" alt="Gold Aces" width="371" height="62">
 
-          <!-- app.js adds the photo here, or shows the initials when there is none -->
+          <!-- app.js adds the photo here, or shows the "A" when there is none -->
           <div id="portrait" class="portrait">
-            <span id="initials" class="portrait-initials index-initials" aria-hidden="true" hidden></span>
+            <span id="portrait-fallback" class="portrait-fallback index-rank" aria-hidden="true" hidden>A</span>
           </div>
 
           <h1 id="name" class="name"></h1>
@@ -56,6 +56,7 @@
             Save Contact
           </a>
           <a id="download-link" class="download-link">Download contact file</a>
+          <p id="save-status" class="save-status" role="status" hidden></p>
 
           <!-- Call / email / website buttons -->
           <ul class="actions">

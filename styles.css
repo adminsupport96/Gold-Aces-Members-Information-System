@@ -249,7 +249,7 @@ body {
   gap: calc(7 * var(--u));
 }
 .index-bottom { top: auto; left: auto; bottom: calc(22 * var(--u)); right: calc(22 * var(--u)); transform: rotate(180deg); }
-.index-initials {
+.index-rank {
   color: var(--gold-light);
   font: 800 calc(24 * var(--u))/1 var(--font-display);
   letter-spacing: 0.02em;
@@ -278,7 +278,7 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
-.portrait-initials { font-size: calc(42 * var(--u)); font-weight: 700; }
+.portrait-fallback { font-size: calc(48 * var(--u)); font-weight: 700; }
 
 .name {
   margin: 0;
@@ -331,6 +331,14 @@ body {
   text-decoration: underline;
   text-decoration-color: rgb(195 202 219 / 0.5);
   text-underline-offset: 3px;
+}
+
+/* Shown after a download: what to do with the file */
+.save-status {
+  margin: calc(4 * var(--u)) 0 0;
+  max-width: 30ch;
+  color: var(--gold-light);
+  font-size: max(12px, calc(13 * var(--u)));
 }
 
 /* Until app.js gives the save links an href (while the contact file is

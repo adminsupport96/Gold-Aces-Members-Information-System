@@ -123,7 +123,7 @@ components:
 
 **Creative North Star: "The Dealt Ace"**
 
-Every surface is a single playing card lying on a navy card table. The card is a lacquered navy face framed by gold foil, marked in its corners like an ace: the holder's initials over the Gold Aces spade, repeated upside down in the opposite corner. Content stacks down the centre of the card in the order you would read a card: house mark, portrait, name, then the one gold action, then small print. Nothing sits outside the card except the table.
+Every surface is a single playing card lying on a navy card table. The card is a lacquered navy face framed by gold foil, marked in its corners like an ace: an "A" over the Gold Aces spade, repeated upside down in the opposite corner. Content stacks down the centre of the card in the order you would read a card: house mark, portrait, name, then the one gold action, then small print. Nothing sits outside the card except the table.
 
 The world is quiet and dense in the way a printed card is dense: one column, centred, generous margins, gold used as foil and ink rather than as fill, except for the single Save Contact pill. Motion follows the card itself. It is dealt onto the table, turns face-up, and one glint of light runs across the foil. When there is nothing to show (loading, contact not found), the card lies face-down and shows its printed lattice back.
 
@@ -131,7 +131,7 @@ The palette, the spade, the logo and the font families are brand commitments pin
 
 **Key Characteristics:**
 - One card per screen, on a navy table, with rounded playing-card corners and a double gold frame.
-- Corner indices: heavy display initials over the spade, top-left and rotated 180 degrees bottom-right.
+- Corner indices: a heavy display "A" over the spade, top-left and rotated 180 degrees bottom-right.
 - Gold is foil: hairlines, rings, index ink, icon strokes; the only gold fill is the Save Contact pill.
 - A face-down card back (lattice inside the inner frame, spade emblem) for every empty or error state.
 - Motion is the deal, the flip and one glint, all removed under reduced motion.
@@ -141,14 +141,14 @@ The palette, the spade, the logo and the font families are brand commitments pin
 Two navies for table and card, two golds for foil, one bright yellow kept back for focus and the glint.
 
 ### Primary
-- **Foil Gold Light** (#fcd77b): the foil itself. Corner index initials, the spade asset fill, the portrait ring, tile icon strokes, the top stop of the Save Contact gradient, and (at reduced alpha) both frame lines.
+- **Foil Gold Light** (#fcd77b): the foil itself. Corner index "A", the spade asset fill, the portrait ring, tile icon strokes, the top stop of the Save Contact gradient, and (at reduced alpha) both frame lines.
 - **Foil Gold** (#e3b865): the deeper, warmer foil. The bottom stop of the Save Contact gradient, the company line under the role, the lattice on the card back (at 9% alpha), and the scrollbar thumb.
 
 ### Secondary
 - **Ace Highlight** (#ffc619): reserved. Keyboard focus outline and the brightest stop of the foil glint, nothing else.
 
 ### Neutral
-- **Table Navy** (#05113e): the table behind the card, the theme color, the Save Contact label, the portrait well behind photos and initials.
+- **Table Navy** (#05113e): the table behind the card, the theme color, the Save Contact label, the portrait well behind photos and the fallback "A".
 - **Table Glow** (#0c1f5c): the light pooled on the table above the card; centre of the table's radial gradient, fading to Table Navy by 62%.
 - **Card Navy** (#061b30): the card's lacquer at its lower end, and the gap ring between portrait and frame rings.
 - **Card Navy Light** (#1d2b50): the card's lacquer at its upper-left end (160-degree gradient into Card Navy by 62%).
@@ -167,10 +167,10 @@ Two navies for table and card, two golds for foil, one bright yellow kept back f
 **Display Font:** Bernoru (with self-hosted Montserrat, then system-ui)
 **Body Font:** Flama (with self-hosted Poppins, then system-ui)
 
-**Character:** Bernoru/Montserrat carries everything that names or acts (initials, name, buttons, tile labels) in heavy weights; Flama/Poppins carries everything that describes, at small sizes in Mist. Until licensed Bernoru and Flama web fonts are added to /fonts/, the card renders in Montserrat (variable, 500 to 800) and Poppins (400, 500, 600).
+**Character:** Bernoru/Montserrat carries everything that names or acts (the corner "A", name, buttons, tile labels) in heavy weights; Flama/Poppins carries everything that describes, at small sizes in Mist. Until licensed Bernoru and Flama web fonts are added to /fonts/, the card renders in Montserrat (variable, 500 to 800) and Poppins (400, 500, 600).
 
 ### Hierarchy
-- **Index** (800, 1.5rem, line-height 1, +0.02em): corner initials in Foil Gold Light. The same face, at 2.6rem and 700, fills the portrait when there is no photo.
+- **Index** (800, 1.5rem, line-height 1, +0.02em): the corner "A" in Foil Gold Light. The same face, at 48 card pixels and 700, fills the portrait with an "A" when there is no photo.
 - **Display** (700, 1.75rem, 1.15, -0.01em, balanced wrap): the person's name, the one headline per card.
 - **Title** (700, 1.25rem, 1.25): the card-back message ("Contact not found").
 - **Button** (700, 1.0625rem, 1): the Save Contact label.
@@ -226,10 +226,10 @@ Two sides of one card in the same grid cell, so the card is as tall as its talle
 - **States:** loading shows the emblem alone with a visually hidden "Loading contact" message in a polite live region; not found adds a Title-weight message and a Mist detail line.
 
 ### Corner Index
-- **Style:** initials in Index type and Foil Gold Light over an 18px spade, 7px apart; top-left at 22px inset, and the same block rotated 180 degrees bottom-right. Decorative to assistive tech.
+- **Style:** an "A" in Index type and Foil Gold Light over an 18px spade, 7px apart; top-left at 22px inset, and the same block rotated 180 degrees bottom-right. Decorative to assistive tech.
 
 ### Portrait
-- **Style:** a 132px circle in Table Navy with the ringed medallion shadow; the photo fills it with object-fit cover, or the initials appear in Foil Gold Light at 2.6rem.
+- **Style:** a 132px circle in Table Navy with the ringed medallion shadow; the photo fills it with object-fit cover, or an "A" appears in Foil Gold Light.
 
 ### Buttons
 - **Shape:** full pill (999px), at least 56px tall, full width up to 320px.
@@ -252,7 +252,7 @@ Two sides of one card in the same grid cell, so the card is as tall as its talle
 
 ### Do:
 - **Do** keep one card per screen, centred on the navy table, with the double gold frame on every side of it.
-- **Do** mark the card with corner indices (initials over the spade, mirrored bottom-right) whenever it shows a person.
+- **Do** mark the card with corner indices ("A" over the spade, mirrored bottom-right) whenever it shows a person.
 - **Do** use the face-down card back, lattice and spade emblem, for loading, empty and error states.
 - **Do** keep gold as foil: lines, rings, index ink, icon strokes; one gold-filled pill per card.
 - **Do** set names and actions in the display stack and descriptions in the text stack in Mist.

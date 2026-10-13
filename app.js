@@ -4,10 +4,11 @@
  * 1. Reads the person's id from the URL, e.g. index.html?id=jane-doe
  * 2. Looks that id up in contacts.json
  * 3. Fills in the card in index.html, hiding any field the contact doesn't have
- * 4. Sets up the "Save Contact" button:
- *      - Android:        an intent link that opens the Contacts app pre-filled
- *      - iPhone/others:  a vCard (.vcf) file generated here, including the photo
- *    The "Download contact file" link always uses the vCard.
+ * 4. Sets up the "Save Contact" button with a contact file (vCard, .vcf)
+ *    generated here, including the photo:
+ *      - iPhone/iPad:        opens it, which shows the "Create New Contact" screen
+ *      - Android/computers:  downloads it; opening the file adds the contact
+ *    The "Download contact file" link always downloads the file.
  *
  * To add a person, edit contacts.json and put their photo in /images/.
  * Nothing in this file needs to change.
@@ -65,21 +66,17 @@ function renderCard(contact) {
   showText('title', contact.title);
   showText('company', contact.company);
 
-  // Initials, shown in the card's corners (and instead of a missing photo).
-  const initials = (contact.firstName[0] + contact.lastName[0]).toUpperCase();
-  document.querySelectorAll('.index-initials').forEach((el) => { el.textContent = initials; });
-
-  // Photo, or the person's initials if there is no photo (or it fails to load).
-  const photoInitials = byId('initials');
+  // Photo, or the ace's "A" if there is no photo (or it fails to load).
+  const photoFallback = byId('portrait-fallback');
   if (contact.photo) {
     const photo = document.createElement('img');
     photo.className = 'portrait-photo';
     photo.alt = name;
-    photo.onerror = () => { photo.remove(); photoInitials.hidden = false; };
+    photo.onerror = () => { photo.remove(); photoFallback.hidden = false; };
     photo.src = contact.photo;
     byId('portrait').prepend(photo);
   } else {
-    photoInitials.hidden = false;
+    photoFallback.hidden = false;
   }
 
   // Call / email / website buttons, plus the same details as small print.
@@ -186,31 +183,36 @@ async function setUpSaveButtons(contact) {
   const downloadLink = byId('download-link');
   const fileName = contact.id + '.vcf';
 
-  // Android: the intent link needs no preparation, so it works right away.
-  if (isAndroid()) {
-    saveButton.href = buildAndroidIntent(contact);
-  }
-
-  // Build the vCard (this loads the photo, so it takes a moment) and turn it
-  // into a temporary file URL the browser can open.
+  // Build the vCard (this loads the photo, so it takes a moment).
   const vcard = await buildVCard(contact);
   const blob = new Blob([vcard], { type: 'text/vcard' });
-  const vcardUrl = URL.createObjectURL(blob);
+  const fileUrl = URL.createObjectURL(blob);
 
-  // Fallback link: always the vCard, downloaded as e.g. "jane-doe.vcf".
-  downloadLink.href = vcardUrl;
+  // "Download contact file" link: always downloads e.g. "jane-doe.vcf".
+  downloadLink.href = fileUrl;
   downloadLink.download = fileName;
+  downloadLink.addEventListener('click', showDownloadedMessage);
 
-  if (!isAndroid()) {
-    saveButton.href = vcardUrl;
-    // On iPhone/iPad, *opening* the vCard shows the "Create New Contact" screen.
-    // Elsewhere (computers), download it as a properly named .vcf file instead.
-    if (!isIOS()) saveButton.download = fileName;
+  if (isIOS()) {
+    // iPhone/iPad: open the vCard, which shows the "Create New Contact" screen.
+    // A data: URL is used because apps' built-in browsers (Messenger,
+    // Facebook, Chrome on iPhone) can't open the temporary file URL above.
+    saveButton.href = await toDataUrl(blob);
+  } else {
+    // Android and computers: download the file. Phones then offer to open it,
+    // which adds the contact. (Browsers don't allow a web page to open the
+    // Contacts app directly.)
+    saveButton.href = fileUrl;
+    saveButton.download = fileName;
+    saveButton.addEventListener('click', showDownloadedMessage);
   }
 }
 
-function isAndroid() {
-  return /Android/i.test(navigator.userAgent);
+// After a download, tell the person what to do next, so the button never
+// looks like it did nothing.
+function showDownloadedMessage() {
+  showText('save-status', 'Contact file downloaded. Open it to add the contact to your phone.');
+  fitCardToScreen();
 }
 
 function isIOS() {
@@ -219,27 +221,14 @@ function isIOS() {
     (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
 }
 
-/* ---------- Android intent ---------- */
-
-// Builds a link that opens Android's "Create contact" screen with the fields
-// filled in. Every value is URL-encoded, so commas, semicolons, spaces etc.
-// in the data can't break the link. (Android can't receive the photo or
-// website this way; the vCard download includes them.)
-function buildAndroidIntent(contact) {
-  const fields = {
-    name: fullName(contact),
-    phone: contact.phone,
-    email: contact.email,
-    company: contact.company,
-    job_title: contact.title,
-    postal: contact.address,
-  };
-
-  let intent = 'intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.dir/raw_contact;';
-  for (const [key, value] of Object.entries(fields)) {
-    if (value) intent += 'S.' + key + '=' + encodeURIComponent(value) + ';';
-  }
-  return intent + 'end';
+// Turns a file into a data: URL (the file's contents written into the link itself).
+function toDataUrl(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(blob);
+  });
 }
 
 /* ---------- vCard 3.0 ---------- */

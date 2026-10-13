@@ -55,14 +55,13 @@ Write that URL onto the person's NFC tag or QR code. If the `id` is missing or d
    - `id`, `firstName` and `lastName` are required. Every other field is optional; leave out anything you don't have and it won't be shown.
    - `id` goes in the URL, so use lowercase letters, numbers and dashes only, and make it unique.
    - Write phone numbers in international format (e.g. `+639171234567`).
-   - With no photo, the card shows the person's initials.
+   - With no photo, the card shows a gold "A" in the photo circle.
 3. Commit and push. Their card is at `index.html?id=jane-doe`.
 
 ## How "Save Contact" works
 
-- **Android:** opens the phone's Contacts app with name, phone, email, company, job title and address filled in. (Android can't receive the photo or website this way.)
-- **iPhone / iPad:** opens a contact file (vCard) that includes the photo, which shows the "Create New Contact" screen.
-- **Computers:** downloads the contact file.
+- **iPhone / iPad:** opens the contact file (vCard, with photo), which shows the "Create New Contact" screen. This also works inside apps' built-in browsers such as Messenger and Facebook.
+- **Android and computers:** downloads the contact file, and the card says "Contact file downloaded. Open it to add the contact to your phone." Tapping the downloaded file opens the Contacts app. Browsers don't let a web page open the Contacts app directly, so this extra tap can't be avoided.
 
 The small **Download contact file** link under the button always downloads the vCard (with photo). Use it if the main button doesn't work in a particular browser.
 
