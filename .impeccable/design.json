@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T05:38:59+00:00",
+  "title": "Design System: Gold Aces",
+  "extensions": {
+    "colorMeta": {
+      "navy-deep": {
+        "role": "neutral",
+        "displayName": "Table Navy",
+        "canonical": "oklch(20.4% 0.088 266.0)",
+        "tonalRamp": [
+          "#01032f",
+          "#11214f",
+          "#2c3f70",
+          "#4a5f93",
+          "#6a81b7",
+          "#8ba4dd",
+          "#b1c9fe",
+          "#e7efff"
+        ]
+      },
+      "navy": {
+        "role": "neutral",
+        "displayName": "Card Navy",
+        "canonical": "oklch(21.8% 0.050 250.7)",
+        "tonalRamp": [
+          "#000b1f",
+          "#11263c",
+          "#2e445c",
+          "#4c647d",
+          "#6c85a0",
+          "#8ea8c4",
+          "#b2cce9",
+          "#e3f0ff"
+        ]
+      },
+      "navy-light": {
+        "role": "neutral",
+        "displayName": "Card Navy Light",
+        "canonical": "oklch(29.8% 0.070 266.6)",
+        "tonalRamp": [
+          "#020628",
+          "#152347",
+          "#314067",
+          "#4f6089",
+          "#6f81ad",
+          "#91a4d2",
+          "#b4c9f8",
+          "#e7effe"
+        ]
+      },
+      "table-glow": {
+        "role": "neutral",
+        "displayName": "Table Glow",
+        "canonical": "oklch(27.0% 0.112 265.7)",
+        "tonalRamp": [
+          "#010039",
+          "#0b1d5a",
+          "#253d7d",
+          "#435ea0",
+          "#6280c5",
+          "#84a3ec",
+          "#b1c9fd",
+          "#e7effe"
+        ]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Foil Gold",
+        "canonical": "oklch(80.4% 0.113 82.4)",
+        "tonalRamp": [
+          "#140800",
+          "#332200",
+          "#563d00",
+          "#7e5a00",
+          "#a47b21",
+          "#c89e4a",
+          "#eec26f",
+          "#feeccb"
+        ]
+      },
+      "gold-light": {
+        "role": "primary",
+        "displayName": "Foil Gold Light",
+        "canonical": "oklch(89.2% 0.119 88.0)",
+        "tonalRamp": [
+          "#130900",
+          "#312300",
+          "#533f00",
+          "#795d00",
+          "#a07d14",
+          "#c4a043",
+          "#e9c569",
+          "#ffedc3"
+        ]
+      },
+      "highlight": {
+        "role": "secondary",
+        "displayName": "Ace Highlight",
+        "canonical": "oklch(85.4% 0.171 87.0)",
+        "tonalRamp": [
+          "#130900",
+          "#312300",
+          "#543e00",
+          "#795d0a",
+          "#a17d13",
+          "#cc9d06",
+          "#f9c001",
+          "#ffedc5"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Card Ink",
+        "canonical": "oklch(96.5% 0.010 87.5)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272520",
+          "#44423c",
+          "#63615b",
+          "#85827c",
+          "#a8a59e",
+          "#ccc9c2",
+          "#f1eee7"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "oklch(83.9% 0.025 267.9)",
+        "tonalRamp": [
+          "#070b16",
+          "#202531",
+          "#3c4250",
+          "#5b6170",
+          "#7c8292",
+          "#9ea5b5",
+          "#c2c9da",
+          "#e7eeff"
+        ]
+      },
+      "foil-line": {
+        "role": "neutral",
+        "displayName": "Foil Line",
+        "canonical": "rgb(252 215 123 / 0.55)"
+      },
+      "foil-hair": {
+        "role": "neutral",
+        "displayName": "Foil Hair",
+        "canonical": "rgb(252 215 123 / 0.22)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The person's name; one per card."
+      },
+      "index": {
+        "displayName": "Index",
+        "purpose": "Corner index initials and portrait initials."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card-back message such as Contact not found."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Save Contact label."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Call / Email / Website tile captions."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Role line and card-back detail, in Mist."
+      },
+      "fine-print": {
+        "displayName": "Fine Print",
+        "purpose": "Selectable contact details list, tabular lining numerals."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Company line in Foil Gold; download link at 400 in Mist."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-on-table",
+        "value": "0 30px 60px -24px rgb(0 0 0 / 0.65), 0 2px 6px rgb(0 0 0 / 0.35)",
+        "purpose": "Both card sides; the only shadow cast onto the table."
+      },
+      {
+        "name": "foil-pill",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 0.45), 0 10px 22px -10px rgb(227 184 101 / 0.6)",
+        "purpose": "Save Contact only: inner top highlight and gold underglow."
+      },
+      {
+        "name": "ringed-medallion",
+        "value": "0 0 0 2px #fcd77b, 0 0 0 7px #061b30, 0 0 0 8px rgb(252 215 123 / 0.22)",
+        "purpose": "Portrait rings; the card-back emblem uses a 1px Foil Line inner ring instead of 2px gold."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Shared curve for the deal, the flip and the glint."
+      },
+      {
+        "name": "deal",
+        "value": "700ms; from translateY(56px) rotate(-5deg) to none",
+        "purpose": "Card slides onto the table on page open."
+      },
+      {
+        "name": "flip",
+        "value": "850ms rotateY(180deg); settled at 950ms (3D transforms dropped)",
+        "purpose": "Card turns face-up once the contact loads."
+      },
+      {
+        "name": "glint",
+        "value": "1200ms after 600ms delay; 105deg pale-gold band, screen blend, translateX(-110%) to 110%",
+        "purpose": "One sweep of light across the foil after the flip; never repeated."
+      },
+      {
+        "name": "press",
+        "value": "scale(0.98) Save Contact / scale(0.97) tiles, 120ms ease",
+        "purpose": "Tactile press feedback."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce removes deal, flip and glint",
+        "purpose": "Card appears face-up with no motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Save Contact Button",
+      "kind": "button",
+      "refersTo": "button-save",
+      "description": "The single gold-foil pill; the primary action on every card.",
+      "html": "<a class=\"ds-btn-save\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0\"/><path d=\"M16 19h6\"/><path d=\"M19 16v6\"/><path d=\"M6 21v-2a4 4 0 0 1 4 -4h4\"/></svg> Save Contact</a>",
+      "css": ":host, :root { --navy-deep:#05113e; --navy:#061b30; --navy-light:#1d2b50; --gold:#e3b865; --gold-light:#fcd77b; --highlight:#ffc619; --ink:#f6f3ec; --mist:#c3cadb; --foil-line:rgb(252 215 123 / 0.55); --foil-hair:rgb(252 215 123 / 0.22); --font-display:\"Bernoru\",\"Montserrat\",system-ui,sans-serif; --font-text:\"Flama\",\"Poppins\",system-ui,sans-serif; --radius-card:22px; --ease-out:cubic-bezier(0.16,1,0.3,1); } .ds-icon svg, .ds-btn-save svg, .ds-tile svg { fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; } .ds-btn-save { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; max-width:320px; min-height:56px; padding:14px 24px; border-radius:999px; background:linear-gradient(180deg, var(--gold-light), var(--gold)); box-shadow:inset 0 1px 0 rgb(255 255 255 / 0.45), 0 10px 22px -10px rgb(227 184 101 / 0.6); color:var(--navy-deep); font:700 1.0625rem/1 var(--font-display); text-decoration:none; transition:transform 120ms ease, filter 160ms ease; } .ds-btn-save svg { width:22px; height:22px; stroke-width:1.8; } .ds-btn-save:hover { filter:brightness(1.05); } .ds-btn-save:focus-visible { outline:2px solid var(--highlight); outline-offset:3px; } .ds-btn-save:active { transform:scale(0.98); filter:brightness(0.95); }"
+    },
+    {
+      "name": "Download Link",
+      "kind": "button",
+      "refersTo": "link-download",
+      "description": "Quiet text fallback under Save Contact that always downloads the vCard.",
+      "html": "<div style=\"background:#061b30;padding:16px;text-align:center\"><a class=\"ds-link-download\" href=\"#\">Download contact file</a></div>",
+      "css": ":host, :root { --navy-deep:#05113e; --navy:#061b30; --navy-light:#1d2b50; --gold:#e3b865; --gold-light:#fcd77b; --highlight:#ffc619; --ink:#f6f3ec; --mist:#c3cadb; --foil-line:rgb(252 215 123 / 0.55); --foil-hair:rgb(252 215 123 / 0.22); --font-display:\"Bernoru\",\"Montserrat\",system-ui,sans-serif; --font-text:\"Flama\",\"Poppins\",system-ui,sans-serif; --radius-card:22px; --ease-out:cubic-bezier(0.16,1,0.3,1); } .ds-link-download { display:inline-block; padding:6px 10px; color:var(--mist); font:400 0.8125rem/1.45 var(--font-text); text-decoration:underline; text-decoration-color:rgb(195 202 219 / 0.5); text-underline-offset:3px; } .ds-link-download:hover { color:var(--ink); } .ds-link-download:focus-visible { outline:2px solid var(--highlight); outline-offset:3px; }"
+    },
+    {
+      "name": "Action Tiles",
+      "kind": "custom",
+      "refersTo": "tile-action",
+      "description": "Call / Email / Website tiles, centred as a group; a tile is omitted when its field is missing.",
+      "html": "<ul class=\"ds-tiles\"><li><a class=\"ds-tile\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2\"/></svg>Call</a></li><li><a class=\"ds-tile\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z\"/><path d=\"M3 7l9 6l9 -6\"/></svg>Email</a></li><li><a class=\"ds-tile\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"/><path d=\"M3.6 9h16.8\"/><path d=\"M3.6 15h16.8\"/><path d=\"M11.5 3a17 17 0 0 0 0 18\"/><path d=\"M12.5 3a17 17 0 0 1 0 18\"/></svg>Website</a></li></ul>",
+      "css": ":host, :root { --navy-deep:#05113e; --navy:#061b30; --navy-light:#1d2b50; --gold:#e3b865; --gold-light:#fcd77b; --highlight:#ffc619; --ink:#f6f3ec; --mist:#c3cadb; --foil-line:rgb(252 215 123 / 0.55); --foil-hair:rgb(252 215 123 / 0.22); --font-display:\"Bernoru\",\"Montserrat\",system-ui,sans-serif; --font-text:\"Flama\",\"Poppins\",system-ui,sans-serif; --radius-card:22px; --ease-out:cubic-bezier(0.16,1,0.3,1); } .ds-icon svg, .ds-btn-save svg, .ds-tile svg { fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; } .ds-tiles { list-style:none; margin:0; padding:16px; background:#061b30; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,100px); justify-content:center; gap:10px; } .ds-tile { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; min-height:72px; border-radius:14px; border:1px solid rgb(252 215 123 / 0.32); background:rgb(255 255 255 / 0.025); color:var(--ink); font:600 0.75rem/1 var(--font-display); letter-spacing:0.02em; text-decoration:none; transition:background-color 160ms ease, border-color 160ms ease, transform 120ms ease; } .ds-tile svg { width:22px; height:22px; color:var(--gold-light); } .ds-tile:hover { border-color:var(--foil-line); background:rgb(252 215 123 / 0.06); } .ds-tile:focus-visible { outline:2px solid var(--highlight); outline-offset:3px; } .ds-tile:active { transform:scale(0.97); background:rgb(252 215 123 / 0.08); }"
+    },
+    {
+      "name": "Card Face",
+      "kind": "card",
+      "refersTo": "card-face",
+      "description": "The face-up ace: double gold frame, corner indices, ringed portrait, name and actions on one centred column.",
+      "html": "<article class=\"ds-side ds-face\"><div class=\"ds-index\"><span>MD</span><svg viewBox=\"0 0 100 112\" width=\"18\" aria-hidden=\"true\"><path fill=\"#fcd77b\" d=\"M50 0C42 14 0 38 0 66c0 15 12 27 27 27 9 0 16-4 20-10-1 12-7 22-19 29h44c-12-7-18-17-19-29 4 6 11 10 20 10 15 0 27-12 27-27C100 38 58 14 50 0Z\"/></svg></div><div class=\"ds-index ds-index-bottom\"><span>MD</span><svg viewBox=\"0 0 100 112\" width=\"18\" aria-hidden=\"true\"><path fill=\"#fcd77b\" d=\"M50 0C42 14 0 38 0 66c0 15 12 27 27 27 9 0 16-4 20-10-1 12-7 22-19 29h44c-12-7-18-17-19-29 4 6 11 10 20 10 15 0 27-12 27-27C100 38 58 14 50 0Z\"/></svg></div><div class=\"ds-portrait\"><span>MD</span></div><h1 class=\"ds-name\">Maria Dela Cruz</h1><p class=\"ds-role\">Senior Sales Consultant</p><p class=\"ds-company\">Gold Aces Car Display Center</p><ul class=\"ds-fine\"><li>+63 917 123 4567</li><li>maria@goldaces.ph</li></ul></article>",
+      "css": ":host, :root { --navy-deep:#05113e; --navy:#061b30; --navy-light:#1d2b50; --gold:#e3b865; --gold-light:#fcd77b; --highlight:#ffc619; --ink:#f6f3ec; --mist:#c3cadb; --foil-line:rgb(252 215 123 / 0.55); --foil-hair:rgb(252 215 123 / 0.22); --font-display:\"Bernoru\",\"Montserrat\",system-ui,sans-serif; --font-text:\"Flama\",\"Poppins\",system-ui,sans-serif; --radius-card:22px; --ease-out:cubic-bezier(0.16,1,0.3,1); } .ds-side { position:relative; border-radius:22px; border:1px solid var(--foil-line); background:linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 62%); box-shadow:0 30px 60px -24px rgb(0 0 0 / 0.65), 0 2px 6px rgb(0 0 0 / 0.35); overflow:hidden; color:var(--ink); font-family:var(--font-text); } .ds-side::before { content:\"\"; position:absolute; inset:8px; border-radius:15px; border:1px solid var(--foil-hair); pointer-events:none; } .ds-face { width:340px; padding:84px 36px; display:flex; flex-direction:column; align-items:center; text-align:center; } .ds-index { position:absolute; top:22px; left:22px; display:flex; flex-direction:column; align-items:center; gap:7px; color:var(--gold-light); font:800 1.5rem/1 var(--font-display); letter-spacing:0.02em; } .ds-index-bottom { top:auto; left:auto; bottom:22px; right:22px; transform:rotate(180deg); } .ds-portrait { display:grid; place-items:center; width:132px; height:132px; margin-bottom:20px; border-radius:50%; background:var(--navy-deep); box-shadow:0 0 0 2px var(--gold-light), 0 0 0 7px var(--navy), 0 0 0 8px var(--foil-hair); color:var(--gold-light); font:700 2.6rem/1 var(--font-display); } .ds-name { margin:0; font:700 1.75rem/1.15 var(--font-display); letter-spacing:-0.01em; text-wrap:balance; } .ds-role { margin:8px 0 0; color:var(--mist); font-size:0.9375rem; } .ds-company { margin:3px 0 0; color:var(--gold); font-size:0.8125rem; font-weight:500; } .ds-fine { list-style:none; margin:22px 0 0; padding:0; color:var(--mist); font-size:0.84375rem; line-height:1.75; font-variant-numeric:tabular-nums lining-nums; }"
+    },
+    {
+      "name": "Card Back",
+      "kind": "card",
+      "refersTo": "card-back",
+      "description": "The face-down card for loading, empty and Contact not found states: lattice inside the inner frame, ringed spade emblem.",
+      "html": "<section class=\"ds-side ds-back\"><div class=\"ds-emblem\"><svg viewBox=\"0 0 100 112\" width=\"44\" aria-hidden=\"true\"><path fill=\"#fcd77b\" d=\"M50 0C42 14 0 38 0 66c0 15 12 27 27 27 9 0 16-4 20-10-1 12-7 22-19 29h44c-12-7-18-17-19-29 4 6 11 10 20 10 15 0 27-12 27-27C100 38 58 14 50 0Z\"/></svg></div><p class=\"ds-back-title\">Contact not found</p><p class=\"ds-back-detail\">Check the link you were given, or ask a Gold Aces staff member.</p></section>",
+      "css": ":host, :root { --navy-deep:#05113e; --navy:#061b30; --navy-light:#1d2b50; --gold:#e3b865; --gold-light:#fcd77b; --highlight:#ffc619; --ink:#f6f3ec; --mist:#c3cadb; --foil-line:rgb(252 215 123 / 0.55); --foil-hair:rgb(252 215 123 / 0.22); --font-display:\"Bernoru\",\"Montserrat\",system-ui,sans-serif; --font-text:\"Flama\",\"Poppins\",system-ui,sans-serif; --radius-card:22px; --ease-out:cubic-bezier(0.16,1,0.3,1); } .ds-side { position:relative; border-radius:22px; border:1px solid var(--foil-line); background:linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 62%); box-shadow:0 30px 60px -24px rgb(0 0 0 / 0.65), 0 2px 6px rgb(0 0 0 / 0.35); overflow:hidden; color:var(--ink); font-family:var(--font-text); } .ds-side::before { content:\"\"; position:absolute; inset:8px; border-radius:15px; border:1px solid var(--foil-hair); pointer-events:none; } .ds-back { width:340px; min-height:420px; display:grid; place-content:center; justify-items:center; gap:14px; padding:48px 32px; text-align:center; } .ds-back::before { background:repeating-linear-gradient(45deg, rgb(227 184 101 / 0.09) 0 1px, transparent 1px 15px), repeating-linear-gradient(-45deg, rgb(227 184 101 / 0.09) 0 1px, transparent 1px 15px); } .ds-back > * { position:relative; } .ds-emblem { display:grid; place-items:center; width:116px; height:116px; border-radius:50%; background:var(--navy); box-shadow:0 0 0 1px var(--foil-line), 0 0 0 7px var(--navy), 0 0 0 8px var(--foil-hair); } .ds-back-title { margin:10px 0 0; font:700 1.25rem/1.25 var(--font-display); } .ds-back-detail { margin:0; max-width:26ch; color:var(--mist); font-size:0.9375rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Dealt Ace",
+    "overview": "Every surface is a single playing card lying on a navy card table. The card is a lacquered navy face framed by gold foil, marked in its corners like an ace: the holder's initials over the Gold Aces spade, repeated upside down in the opposite corner. Content stacks down the centre of the card in the order you would read a card: house mark, portrait, name, then the one gold action, then small print. Nothing sits outside the card except the table.\n\nThe world is quiet and dense in the way a printed card is dense: one column, centred, generous margins, gold used as foil and ink rather than as fill, except for the single Save Contact pill. Motion follows the card itself. It is dealt onto the table, turns face-up, and one glint of light runs across the foil. When there is nothing to show (loading, contact not found), the card lies face-down and shows its printed lattice back.\n\nThe palette, the spade, the logo and the font families are brand commitments pinned in PRODUCT.md, not choices of this system. The system decides how they are used: navy as table and card, gold as foil.",
+    "keyCharacteristics": [
+      "One card per screen, on a navy table, with rounded playing-card corners and a double gold frame.",
+      "Corner indices: heavy display initials over the spade, top-left and rotated 180 degrees bottom-right.",
+      "Gold is foil: hairlines, rings, index ink, icon strokes; the only gold fill is the Save Contact pill.",
+      "A face-down card back (lattice inside the inner frame, spade emblem) for every empty or error state.",
+      "Motion is the deal, the flip and one glint, all removed under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Foil Not Paint Rule",
+        "body": "Gold appears as line, ring, ink and icon stroke. The Save Contact pill is the only gold-filled surface on a card; a second gold fill competes with it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reserved Highlight Rule",
+        "body": "Ace Highlight (#ffc619) is for keyboard focus and the glint's brightest stop. It is never a text, fill or border colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Names Speak Display Rule",
+        "body": "Anything that names a person or an action is set in the display stack; anything that describes is set in the text stack, smaller and in Mist.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Column Rule",
+        "body": "Every element is centred on the card's vertical axis; the only things off-axis are the two corner indices.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Lifted Card Rule",
+        "body": "Only the card casts a shadow onto the table. Elements on the card are printed onto it and use rings and lines, not drop shadows; the Save Contact pill's gold underglow is the single exception.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Double Frame Rule",
+        "body": "Every card side carries both frame lines: the outer Foil Line edge and the inner Foil Hair frame at 8px inset. The card back's lattice is printed only inside the inner frame, leaving a plain border.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** keep one card per screen, centred on the navy table, with the double gold frame on every side of it.",
+      "**Do** mark the card with corner indices (initials over the spade, mirrored bottom-right) whenever it shows a person.",
+      "**Do** use the face-down card back, lattice and spade emblem, for loading, empty and error states.",
+      "**Do** keep gold as foil: lines, rings, index ink, icon strokes; one gold-filled pill per card.",
+      "**Do** set names and actions in the display stack and descriptions in the text stack in Mist.",
+      "**Do** give every motion a reduced-motion path in which the card simply appears face-up."
+    ],
+    "donts": [
+      "**Don't** use Ace Highlight (#ffc619) for text, fills or borders; it is the focus ring and the glint only.",
+      "**Don't** add a second gold-filled control or let anything compete with Save Contact.",
+      "**Don't** put drop shadows on elements printed on the card other than the Save Contact underglow; only the card casts a shadow onto the table.",
+      "**Don't** use pure white text; Card Ink is the lightest text colour.",
+      "**Don't** run the glint more than once per card, or loop any card motion.",
+      "**Don't** swap the brand fonts or palette; they are pinned in PRODUCT.md, and Montserrat/Poppins stand in only until licensed Bernoru/Flama files are added."
+    ]
+  }
+}

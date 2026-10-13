@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gold Aces</title>
+  <meta name="theme-color" content="#05113e">
+  <link rel="icon" type="image/svg+xml" href="assets/spade.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="fonts/montserrat-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="table">
+
+    <!-- The business card. It is a playing card with two sides:
+         - the back (face-down) shows while the contact loads, and for "Contact not found"
+         - the face shows the contact; app.js fills it in and turns the card over.
+         Any element marked `hidden` stays hidden when the contact has no value for it. -->
+    <article id="card" class="card">
+      <div class="card-inner">
+
+        <!-- Card back -->
+        <section id="back" class="side back" aria-live="polite">
+          <div class="back-emblem"><img src="assets/spade.svg" alt="" width="100" height="112"></div>
+          <p id="message-title" class="back-title"><span class="visually-hidden">Loading contact…</span></p>
+          <p id="message-detail" class="back-detail" hidden></p>
+        </section>
+
+        <!-- Card face -->
+        <section id="face" class="side face" hidden>
+          <!-- Corner indices: the person's initials over the spade, like an ace -->
+          <div class="index index-top" aria-hidden="true">
+            <span class="index-initials"></span>
+            <img src="assets/spade.svg" alt="" width="100" height="112">
+          </div>
+          <div class="index index-bottom" aria-hidden="true">
+            <span class="index-initials"></span>
+            <img src="assets/spade.svg" alt="" width="100" height="112">
+          </div>
+
+          <img class="logo" src="assets/gold-aces-logo-light.png" alt="Gold Aces" width="371" height="62">
+
+          <!-- app.js adds the photo here, or shows the initials when there is none -->
+          <div id="portrait" class="portrait">
+            <span id="initials" class="portrait-initials index-initials" aria-hidden="true" hidden></span>
+          </div>
+
+          <h1 id="name" class="name"></h1>
+          <p id="title" class="title" hidden></p>
+          <p id="company" class="company" hidden></p>
+
+          <!-- Save buttons. app.js sets their links once the contact file is ready. -->
+          <a id="save-button" class="save-button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M16 19h6"/><path d="M19 16v6"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4"/></svg>
+            Save Contact
+          </a>
+          <a id="download-link" class="download-link">Download contact file</a>
+
+          <!-- Call / email / website buttons -->
+          <ul class="actions">
+            <li id="call-item" hidden>
+              <a id="call-link" class="action">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg>
+                Call
+              </a>
+            </li>
+            <li id="email-item" hidden>
+              <a id="email-link" class="action">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></svg>
+                Email
+              </a>
+            </li>
+            <li id="website-item" hidden>
+              <a id="website-link" class="action" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M3.6 9h16.8"/><path d="M3.6 15h16.8"/><path d="M11.5 3a17 17 0 0 0 0 18"/><path d="M12.5 3a17 17 0 0 1 0 18"/></svg>
+                Website
+              </a>
+            </li>
+          </ul>
+
+          <!-- The details themselves, as small print people can read or copy -->
+          <ul class="details">
+            <li id="phone-detail" hidden></li>
+            <li id="email-detail" hidden></li>
+            <li id="website-detail" hidden></li>
+            <li id="address-detail" hidden></li>
+          </ul>
+        </section>
+
+      </div>
+    </article>
+
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

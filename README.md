@@ -1,27 +1,87 @@
-# Gold Aces Contact Files
+# Gold Aces Digital Business Cards
 
-This repository serves contact files directly. There is no landing page. Each `.vcf` file has its own URL and can be opened or saved by a compatible phone or browser.
+A static website (plain HTML, CSS and JavaScript, with no backend and no build step) that shows a digital business card for each person in `contacts.json`.
 
-## Current contact
+Each person's card has its own URL:
 
-After enabling GitHub Pages from the repository's root, the contact URL will be:
+`https://YOUR-USERNAME.github.io/REPOSITORY/index.html?id=gold-aces-oneal`
 
-`https://YOUR-USERNAME.github.io/REPOSITORY/contacts/gold-aces-oneal.vcf`
+Write that URL onto the person's NFC tag or QR code. If the `id` is missing or doesn't match anyone, the page shows "Contact not found".
 
-For a user or organization site repository named `YOUR-USERNAME.github.io`, use:
+## Files
 
-`https://YOUR-USERNAME.github.io/contacts/gold-aces-oneal.vcf`
+| File | What it is |
+| --- | --- |
+| `contacts.json` | Everyone's contact details. **Edit this to add or change people.** |
+| `images/` | Profile photos. |
+| `index.html` | The card page. |
+| `styles.css` | The look of the card. Brand colors and fonts are variables at the top of the file. |
+| `app.js` | Loads the contact, fills in the card, and builds the "Save Contact" links. |
+| `assets/` | Gold Aces logo (original and a light version for the navy card), the spade mark, and the home-screen icon. |
+| `fonts/` | Web fonts used by the card (Montserrat and Poppins). |
+| `PRODUCT.md`, `.impeccable/` | Design notes used when changing the card's design. Not needed to add people. |
+| `contacts/*.vcf` | Older direct contact files, kept so NFC tags already written with those URLs keep working. |
 
-Write the URL for the contact you want onto its NFC tag. A direct link to the `.vcf` file lets the receiving device handle the contact file; the exact prompt or download behavior depends on the device and browser.
+## Add a person
 
-## Add another contact
+1. Put their photo in `images/`, e.g. `images/jane-doe.jpg`. A square photo of about 400×400 px works best (JPEG or PNG).
+2. Add an entry to `contacts.json`. Entries are separated by commas:
 
-1. Create another `.vcf` file inside `contacts/`, using a URL-friendly filename such as `contacts/jane-smith.vcf`.
-2. Add the contact's details in vCard 3.0 format. Include `BEGIN:VCARD`, `VERSION:3.0`, `FN`, and `END:VCARD`; add fields such as `N`, `ORG`, `TITLE`, `EMAIL`, and `TEL` as needed.
-3. Commit and push the new file. Its direct URL will be `https://YOUR-USERNAME.github.io/REPOSITORY/contacts/jane-smith.vcf`.
+   ```json
+   [
+     {
+       "id": "gold-aces-oneal",
+       "firstName": "Gold Aces",
+       "lastName": "Oneal",
+       "title": "Web Developer",
+       "company": "Gold Aces Car Display Center",
+       "email": "admin.support@goldaces.ph"
+     },
+     {
+       "id": "jane-doe",
+       "firstName": "Jane",
+       "lastName": "Doe",
+       "title": "Marketing Manager",
+       "company": "Gold Aces Car Display Center",
+       "phone": "+639171234567",
+       "email": "jane@example.com",
+       "website": "https://example.com",
+       "address": "123 Sample Street, Your City",
+       "photo": "images/jane-doe.jpg"
+     }
+   ]
+   ```
 
-Each contact stays at its own URL, so you can encode a different contact file URL on each NFC tag.
+   - `id`, `firstName` and `lastName` are required. Every other field is optional; leave out anything you don't have and it won't be shown.
+   - `id` goes in the URL, so use lowercase letters, numbers and dashes only, and make it unique.
+   - Write phone numbers in international format (e.g. `+639171234567`).
+   - With no photo, the card shows the person's initials.
+3. Commit and push. Their card is at `index.html?id=jane-doe`.
+
+## How "Save Contact" works
+
+- **Android:** opens the phone's Contacts app with name, phone, email, company, job title and address filled in. (Android can't receive the photo or website this way.)
+- **iPhone / iPad:** opens a contact file (vCard) that includes the photo, which shows the "Create New Contact" screen.
+- **Computers:** downloads the contact file.
+
+The small **Download contact file** link under the button always downloads the vCard (with photo). Use it if the main button doesn't work in a particular browser.
+
+## Brand fonts and logo
+
+The card uses Gold Aces navy and gold. Its fonts are Montserrat (names, buttons) and Poppins (text), standing in for the brand fonts Bernoru and Flama, which are paid fonts. To switch to the brand fonts, add licensed web font files named exactly `fonts/bernoru.woff2` and `fonts/flama.woff2`; the card picks them up automatically.
+
+The logo was made from a small 400px image, so it can look slightly soft on high-resolution phones. For a sharper card, replace `assets/gold-aces-logo-light.png` with a larger (1200px+) transparent PNG of the logo with light lettering. The spade in the card corners is drawn in `assets/spade.svg`.
+
+## Test it on your computer
+
+The page loads `contacts.json` with JavaScript, which browsers block when you open `index.html` directly from disk. Run a small local web server from the repository folder instead:
+
+```sh
+python3 -m http.server 8000
+```
+
+Then open <http://localhost:8000/index.html?id=gold-aces-oneal>.
 
 ## Enable GitHub Pages
 
-In the repository, open **Settings > Pages**. Under **Build and deployment**, choose **Deploy from a branch**, select the branch containing these files and the `/ (root)` folder, then save. Wait for GitHub Pages to publish before testing a contact URL.
+In the repository, open **Settings > Pages**. Under **Build and deployment**, choose **Deploy from a branch**, select the branch containing these files and the `/ (root)` folder, then save. Wait for GitHub Pages to publish before testing a card URL.

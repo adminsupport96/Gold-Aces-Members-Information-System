@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Gold Aces business card styles (mobile-first).
+   The card is drawn as an ace playing card lying on a navy table.
+   Brand colors and fonts live in the variables below.
+   Icons in index.html are from Tabler Icons (MIT license).
+   ========================================================================== */
+
+/* ---------- Fonts ----------
+   Brand fonts: Bernoru (display) and Flama (text) are licensed fonts. To use
+   them, put their web font files in /fonts/ with the names below; until then
+   the card falls back to Montserrat and Poppins, which are included. */
+@font-face {
+  font-family: "Bernoru";
+  src: local("Bernoru"), url("fonts/bernoru.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Flama";
+  src: local("Flama"), url("fonts/flama.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/montserrat-latin-var.woff2") format("woff2");
+  font-weight: 500 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/poppins-latin-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/poppins-latin-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/poppins-latin-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root {
+  /* Brand colors */
+  --navy-deep: #05113e;    /* the table behind the card */
+  --navy: #061b30;         /* card */
+  --navy-light: #1d2b50;   /* card highlight, tiles */
+  --gold: #e3b865;
+  --gold-light: #fcd77b;
+  --highlight: #ffc619;    /* keyboard focus and the foil glint only */
+
+  --ink: #f6f3ec;          /* main text on navy */
+  --mist: #c3cadb;         /* secondary text on navy */
+  --foil-line: rgb(252 215 123 / 0.55);
+  --foil-hair: rgb(252 215 123 / 0.22);
+
+  --font-display: "Bernoru", "Montserrat", system-ui, sans-serif;
+  --font-text: "Flama", "Poppins", system-ui, sans-serif;
+
+  --radius-card: 22px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+/* Elements marked `hidden` stay hidden even when a rule below sets display */
+[hidden] { display: none !important; }
+
+html { scrollbar-color: var(--gold) var(--navy-deep); }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(120% 70% at 50% 28%, #0c1f5c 0%, var(--navy-deep) 62%) fixed,
+    var(--navy-deep);
+  color: var(--ink);
+  font-family: var(--font-text);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--gold-light); color: var(--navy-deep); }
+
+:focus-visible {
+  outline: 2px solid var(--highlight);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Table and card ---------- */
+
+.table {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 14px max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  perspective: 1800px;
+  /* The deal: the card slides onto the table when the page opens */
+  animation: deal 700ms var(--ease-out) both;
+}
+
+/* Both sides sit in the same grid cell, so the card is as tall as its taller side */
+.card-inner {
+  display: grid;
+  min-height: calc(100vh - 28px);
+  min-height: calc(100dvh - 28px);
+  transform-style: preserve-3d;
+  transition: transform 850ms var(--ease-out);
+}
+
+.side {
+  grid-area: 1 / 1;
+  position: relative;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--foil-line);
+  background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 62%);
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.65), 0 2px 6px rgb(0 0 0 / 0.35);
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* Inner hairline frame, like the border printed on a playing card */
+.side::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--radius-card) - 7px);
+  border: 1px solid var(--foil-hair);
+  pointer-events: none;
+}
+
+/* Turning the card over: the face starts turned away; app.js adds .is-face
+   to flip it, then .is-settled to drop the 3D transforms once it lands. */
+.face { transform: rotateY(180deg); }
+.card.is-face .card-inner { transform: rotateY(180deg); }
+.card.is-settled .card-inner,
+.card.is-settled .face { transform: none; transition: none; }
+.card.is-settled .back { display: none; }
+
+@keyframes deal {
+  from { transform: translateY(56px) rotate(-5deg); }
+  to   { transform: none; }
+}
+
+/* ---------- Card back (loading, "Contact not found") ---------- */
+
+.back {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 48px 32px;
+  text-align: center;
+}
+/* The printed lattice sits inside the inner frame, leaving a plain border */
+.back::before {
+  background:
+    repeating-linear-gradient(45deg, rgb(227 184 101 / 0.09) 0 1px, transparent 1px 15px),
+    repeating-linear-gradient(-45deg, rgb(227 184 101 / 0.09) 0 1px, transparent 1px 15px);
+}
+.back > * { position: relative; }
+
+.back-emblem {
+  display: grid;
+  place-items: center;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  background: var(--navy);
+  box-shadow: 0 0 0 1px var(--foil-line), 0 0 0 7px var(--navy), 0 0 0 8px var(--foil-hair);
+}
+.back-emblem img { width: 44px; height: auto; }
+
+.back-title {
+  margin: 10px 0 0;
+  font: 700 1.25rem/1.25 var(--font-display);
+}
+.back-detail {
+  margin: 0;
+  max-width: 26ch;
+  color: var(--mist);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Card face ---------- */
+
+.face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 84px 36px;
+  text-align: center;
+}
+
+/* The foil glint: one sweep of light across the card after it turns over */
+.face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 38%, rgb(255 236 170 / 0.14) 47%, rgb(255 198 25 / 0.2) 50%, transparent 60%);
+  mix-blend-mode: screen;
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+.card.is-face .face::after { animation: glint 1200ms 600ms var(--ease-out) both; }
+@keyframes glint { to { transform: translateX(110%); } }
+
+/* Corner indices */
+.index {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+.index-bottom { top: auto; left: auto; bottom: 22px; right: 22px; transform: rotate(180deg); }
+.index-initials {
+  color: var(--gold-light);
+  font: 800 1.5rem/1 var(--font-display);
+  letter-spacing: 0.02em;
+}
+.index img { width: 18px; height: auto; }
+
+.logo {
+  width: 168px;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.portrait {
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  box-shadow: 0 0 0 2px var(--gold-light), 0 0 0 7px var(--navy), 0 0 0 8px var(--foil-hair);
+}
+.portrait-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.portrait-initials { font-size: 2.6rem; font-weight: 700; }
+
+.name {
+  margin: 0;
+  max-width: 100%;
+  font: 700 1.75rem/1.15 var(--font-display);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.title {
+  margin: 8px 0 0;
+  color: var(--mist);
+  font-size: 0.9375rem;
+}
+.company {
+  margin: 3px 0 0;
+  color: var(--gold);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* Save Contact: the gold-foil button */
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+  min-height: 56px;
+  margin-top: 26px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 10px 22px -10px rgb(227 184 101 / 0.6);
+  color: var(--navy-deep);
+  font: 700 1.0625rem/1 var(--font-display);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease, filter 160ms ease;
+}
+.save-button:active { transform: scale(0.98); filter: brightness(0.95); }
+.save-button svg { width: 22px; height: 22px; stroke-width: 1.8; }
+
+.download-link {
+  margin-top: 8px;
+  padding: 6px 10px;   /* bigger tap target */
+  color: var(--mist);
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-decoration-color: rgb(195 202 219 / 0.5);
+  text-underline-offset: 3px;
+}
+
+/* Until app.js gives the save links an href (while the contact file is
+   being prepared), show them dimmed and ignore taps. */
+.save-button:not([href]),
+.download-link:not([href]) {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Call / email / website tiles: one column per tile, centred */
+.actions {
+  list-style: none;
+  width: 100%;
+  max-width: 320px;
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 100px);
+  justify-content: center;
+  gap: 10px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 72px;
+  border-radius: 14px;
+  border: 1px solid rgb(252 215 123 / 0.32);
+  background: rgb(255 255 255 / 0.025);
+  color: var(--ink);
+  font: 600 0.75rem/1 var(--font-display);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 120ms ease;
+}
+.action:active { transform: scale(0.97); background: rgb(252 215 123 / 0.08); }
+.action svg { width: 22px; height: 22px; color: var(--gold-light); }
+
+@media (hover: hover) {
+  .save-button:hover { filter: brightness(1.05); }
+  .action:hover { border-color: var(--foil-line); background: rgb(252 215 123 / 0.06); }
+  .download-link:hover { color: var(--ink); }
+}
+
+/* The details as small print */
+.details {
+  list-style: none;
+  width: 100%;
+  margin: 22px 0 0;
+  padding: 0;
+  color: var(--mist);
+  font-size: 0.84375rem;
+  line-height: 1.75;
+  font-variant-numeric: tabular-nums lining-nums;
+  overflow-wrap: anywhere;
+}
+
+/* Shared icon style (outline icons) */
+svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Larger screens ---------- */
+
+@media (min-width: 640px) {
+  .table { padding: 40px; }
+  .card-inner { min-height: min(740px, calc(100dvh - 80px)); }
+}
+
+/* ---------- Reduced motion: no deal, flip or glint ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+  .card-inner { transition: none; }
+  .card.is-face .face::after { animation: none; }
+}
