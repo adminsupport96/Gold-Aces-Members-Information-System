@@ -109,6 +109,37 @@ function renderCard(contact) {
   turnCardOver();
 }
 
+// The card is sized to fill the screen (see "Sizing" in styles.css). If this
+// contact's content is taller than that (a long name or address, a short
+// screen), shrink everything on the card a little more until it fits.
+function fitCardToScreen() {
+  const card = byId('card');
+  const face = byId('face');
+  card.style.setProperty('--fit', '1');
+
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const available = parseFloat(getComputedStyle(face.parentElement).minHeight);
+    const needed = contentHeight(face);
+    if (needed <= available) return;
+    const fit = parseFloat(card.style.getPropertyValue('--fit')) * (available / needed);
+    card.style.setProperty('--fit', Math.max(fit, 0.5).toFixed(3));
+  }
+}
+
+// Height the face needs: its border and padding plus the stacked content (the
+// corner indices are positioned separately, so they don't count).
+function contentHeight(face) {
+  const style = getComputedStyle(face);
+  const blocks = [...face.children].filter((el) =>
+    el.offsetParent !== null && getComputedStyle(el).position !== 'absolute');
+  const first = blocks[0];
+  const last = blocks[blocks.length - 1];
+  return parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth) +
+    parseFloat(style.paddingTop) + parseFloat(style.paddingBottom) +
+    (last.offsetTop + last.offsetHeight + parseFloat(getComputedStyle(last).marginBottom)) -
+    (first.offsetTop - parseFloat(getComputedStyle(first).marginTop));
+}
+
 // Flips the card from its back to its face, then removes the 3D effect once
 // it has landed so the text renders crisply.
 function turnCardOver() {
@@ -119,6 +150,10 @@ function turnCardOver() {
   face.hidden = false;
   back.setAttribute('aria-hidden', 'true');
   back.inert = true;
+
+  fitCardToScreen();
+  window.addEventListener('resize', fitCardToScreen);
+  document.fonts.ready.then(fitCardToScreen); // text size can change once fonts load
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Wait one frame so the browser draws the face turned away before flipping it.

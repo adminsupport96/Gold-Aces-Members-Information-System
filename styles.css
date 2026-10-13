@@ -112,7 +112,18 @@ body {
   padding: 14px max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
 }
 
+/* Sizing: the card is as tall as the screen (minus the table margin), and
+   everything on it is measured in --u, a "card pixel" that shrinks on short
+   or narrow screens so the whole card fits without scrolling.
+   --u is 1px on a 390x844 phone. app.js lowers --fit when a long name or
+   address would still overflow. On very small screens (e.g. a phone held
+   sideways) --u stops shrinking at 0.55px and the page scrolls instead. */
 .card {
+  --card-h: calc(100vh - 28px);
+  --card-h: calc(100dvh - 28px);
+  --fit: 1;
+  --u: max(0.55px, calc(min(1px, calc(var(--card-h) / 800), calc((100vw - 28px) / 362)) * var(--fit)));
+
   width: 100%;
   max-width: 420px;
   perspective: 1800px;
@@ -123,8 +134,7 @@ body {
 /* Both sides sit in the same grid cell, so the card is as tall as its taller side */
 .card-inner {
   display: grid;
-  min-height: calc(100vh - 28px);
-  min-height: calc(100dvh - 28px);
+  min-height: var(--card-h);
   transform-style: preserve-3d;
   transition: transform 850ms var(--ease-out);
 }
@@ -158,8 +168,9 @@ body {
 .card.is-settled .face { transform: none; transition: none; }
 .card.is-settled .back { display: none; }
 
+/* Dealt from just above, so the moving card never pushes past the bottom of the screen */
 @keyframes deal {
-  from { transform: translateY(56px) rotate(-5deg); }
+  from { transform: translateY(-40px) rotate(-3deg); }
   to   { transform: none; }
 }
 
@@ -169,8 +180,8 @@ body {
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 14px;
-  padding: 48px 32px;
+  gap: calc(14 * var(--u));
+  padding: calc(48 * var(--u)) calc(32 * var(--u));
   text-align: center;
 }
 /* The printed lattice sits inside the inner frame, leaving a plain border */
@@ -184,23 +195,23 @@ body {
 .back-emblem {
   display: grid;
   place-items: center;
-  width: 116px;
-  height: 116px;
+  width: calc(116 * var(--u));
+  height: calc(116 * var(--u));
   border-radius: 50%;
   background: var(--navy);
   box-shadow: 0 0 0 1px var(--foil-line), 0 0 0 7px var(--navy), 0 0 0 8px var(--foil-hair);
 }
-.back-emblem img { width: 44px; height: auto; }
+.back-emblem img { width: calc(44 * var(--u)); height: auto; }
 
 .back-title {
-  margin: 10px 0 0;
-  font: 700 1.25rem/1.25 var(--font-display);
+  margin: calc(10 * var(--u)) 0 0;
+  font: 700 max(16px, calc(20 * var(--u)))/1.25 var(--font-display);
 }
 .back-detail {
   margin: 0;
   max-width: 26ch;
   color: var(--mist);
-  font-size: 0.9375rem;
+  font-size: max(13px, calc(15 * var(--u)));
 }
 
 /* ---------- Card face ---------- */
@@ -210,7 +221,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 84px 36px;
+  padding: calc(60 * var(--u)) calc(36 * var(--u)) calc(72 * var(--u));
   text-align: center;
 }
 
@@ -230,33 +241,33 @@ body {
 /* Corner indices */
 .index {
   position: absolute;
-  top: 22px;
-  left: 22px;
+  top: calc(22 * var(--u));
+  left: calc(22 * var(--u));
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: calc(7 * var(--u));
 }
-.index-bottom { top: auto; left: auto; bottom: 22px; right: 22px; transform: rotate(180deg); }
+.index-bottom { top: auto; left: auto; bottom: calc(22 * var(--u)); right: calc(22 * var(--u)); transform: rotate(180deg); }
 .index-initials {
   color: var(--gold-light);
-  font: 800 1.5rem/1 var(--font-display);
+  font: 800 calc(24 * var(--u))/1 var(--font-display);
   letter-spacing: 0.02em;
 }
-.index img { width: 18px; height: auto; }
+.index img { width: calc(18 * var(--u)); height: auto; }
 
 .logo {
-  width: 168px;
+  width: calc(168 * var(--u));
   height: auto;
-  margin-bottom: 24px;
+  margin-bottom: calc(22 * var(--u));
 }
 
 .portrait {
   display: grid;
   place-items: center;
-  width: 132px;
-  height: 132px;
-  margin-bottom: 20px;
+  width: calc(132 * var(--u));
+  height: calc(132 * var(--u));
+  margin-bottom: calc(20 * var(--u));
   border-radius: 50%;
   background: var(--navy-deep);
   box-shadow: 0 0 0 2px var(--gold-light), 0 0 0 7px var(--navy), 0 0 0 8px var(--foil-hair);
@@ -267,56 +278,56 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
-.portrait-initials { font-size: 2.6rem; font-weight: 700; }
+.portrait-initials { font-size: calc(42 * var(--u)); font-weight: 700; }
 
 .name {
   margin: 0;
   max-width: 100%;
-  font: 700 1.75rem/1.15 var(--font-display);
+  font: 700 calc(28 * var(--u))/1.15 var(--font-display);
   letter-spacing: -0.01em;
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
 .title {
-  margin: 8px 0 0;
+  margin: calc(8 * var(--u)) 0 0;
   color: var(--mist);
-  font-size: 0.9375rem;
+  font-size: max(13px, calc(15 * var(--u)));
 }
 .company {
-  margin: 3px 0 0;
+  margin: calc(3 * var(--u)) 0 0;
   color: var(--gold);
-  font-size: 0.8125rem;
+  font-size: max(12px, calc(13 * var(--u)));
   font-weight: 500;
 }
 
-/* Save Contact: the gold-foil button */
+/* Save Contact: the gold-foil button (never shorter than a comfortable tap) */
 .save-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: calc(10 * var(--u));
   width: 100%;
-  max-width: 320px;
-  min-height: 56px;
-  margin-top: 26px;
-  padding: 14px 24px;
+  max-width: calc(320 * var(--u));
+  min-height: max(46px, calc(56 * var(--u)));
+  margin-top: calc(24 * var(--u));
+  padding: 0 calc(24 * var(--u));
   border-radius: 999px;
   background: linear-gradient(180deg, var(--gold-light), var(--gold));
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 10px 22px -10px rgb(227 184 101 / 0.6);
   color: var(--navy-deep);
-  font: 700 1.0625rem/1 var(--font-display);
+  font: 700 max(15px, calc(17 * var(--u)))/1 var(--font-display);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: transform 120ms ease, filter 160ms ease;
 }
 .save-button:active { transform: scale(0.98); filter: brightness(0.95); }
-.save-button svg { width: 22px; height: 22px; stroke-width: 1.8; }
+.save-button svg { width: max(19px, calc(22 * var(--u))); height: max(19px, calc(22 * var(--u))); stroke-width: 1.8; }
 
 .download-link {
-  margin-top: 8px;
-  padding: 6px 10px;   /* bigger tap target */
+  margin-top: calc(6 * var(--u));
+  padding: calc(6 * var(--u)) 10px;   /* bigger tap target */
   color: var(--mist);
-  font-size: 0.8125rem;
+  font-size: max(12px, calc(13 * var(--u)));
   text-decoration: underline;
   text-decoration-color: rgb(195 202 219 / 0.5);
   text-underline-offset: 3px;
@@ -334,14 +345,14 @@ body {
 .actions {
   list-style: none;
   width: 100%;
-  max-width: 320px;
-  margin: 22px 0 0;
+  max-width: calc(320 * var(--u));
+  margin: calc(20 * var(--u)) 0 0;
   padding: 0;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 100px);
+  grid-auto-columns: minmax(0, calc(100 * var(--u)));
   justify-content: center;
-  gap: 10px;
+  gap: calc(10 * var(--u));
 }
 
 .action {
@@ -349,20 +360,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 72px;
+  gap: calc(7 * var(--u));
+  min-height: max(52px, calc(72 * var(--u)));
   border-radius: 14px;
   border: 1px solid rgb(252 215 123 / 0.32);
   background: rgb(255 255 255 / 0.025);
   color: var(--ink);
-  font: 600 0.75rem/1 var(--font-display);
+  font: 600 max(11px, calc(12 * var(--u)))/1 var(--font-display);
   letter-spacing: 0.02em;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 160ms ease, border-color 160ms ease, transform 120ms ease;
 }
 .action:active { transform: scale(0.97); background: rgb(252 215 123 / 0.08); }
-.action svg { width: 22px; height: 22px; color: var(--gold-light); }
+.action svg { width: max(18px, calc(22 * var(--u))); height: max(18px, calc(22 * var(--u))); color: var(--gold-light); }
 
 @media (hover: hover) {
   .save-button:hover { filter: brightness(1.05); }
@@ -374,11 +385,11 @@ body {
 .details {
   list-style: none;
   width: 100%;
-  margin: 22px 0 0;
+  margin: calc(20 * var(--u)) 0 0;
   padding: 0;
   color: var(--mist);
-  font-size: 0.84375rem;
-  line-height: 1.75;
+  font-size: max(12px, calc(13.5 * var(--u)));
+  line-height: 1.7;
   font-variant-numeric: tabular-nums lining-nums;
   overflow-wrap: anywhere;
 }
@@ -396,7 +407,10 @@ svg {
 
 @media (min-width: 640px) {
   .table { padding: 40px; }
-  .card-inner { min-height: min(740px, calc(100dvh - 80px)); }
+  .card {
+    --card-h: min(760px, calc(100vh - 80px));
+    --card-h: min(760px, calc(100dvh - 80px));
+  }
 }
 
 /* ---------- Reduced motion: no deal, flip or glint ---------- */

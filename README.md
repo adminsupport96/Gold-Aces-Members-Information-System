@@ -4,7 +4,7 @@ A static website (plain HTML, CSS and JavaScript, with no backend and no build s
 
 Each person's card has its own URL:
 
-`https://YOUR-USERNAME.github.io/REPOSITORY/index.html?id=gold-aces-oneal`
+`https://YOUR-USERNAME.github.io/REPOSITORY/index.html?id=oneal`
 
 Write that URL onto the person's NFC tag or QR code. If the `id` is missing or doesn't match anyone, the page shows "Contact not found".
 
@@ -30,7 +30,7 @@ Write that URL onto the person's NFC tag or QR code. If the `id` is missing or d
    ```json
    [
      {
-       "id": "gold-aces-oneal",
+       "id": "oneal",
        "firstName": "Gold Aces",
        "lastName": "Oneal",
        "title": "Web Developer",
@@ -80,7 +80,7 @@ The page loads `contacts.json` with JavaScript, which browsers block when you op
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/index.html?id=gold-aces-oneal>.
+Then open <http://localhost:8000/index.html?id=oneal>.
 
 ## Enable GitHub Pages
 

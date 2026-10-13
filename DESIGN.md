@@ -184,9 +184,11 @@ Two navies for table and card, two golds for foil, one bright yellow kept back f
 
 ## Layout
 
-A single centred column on a single card. The table is a full-viewport grid that centres the card with a 14px margin on phones (respecting safe-area insets) and 40px from 640px up. The card is full width up to 420px and at least the viewport height minus the table margin on phones; from 640px it is capped at 740px tall.
+A single centred column on a single card. The table is a full-viewport grid that centres the card with a 14px margin on phones (respecting safe-area insets) and 40px from 640px up. The card is full width up to 420px and exactly the screen height minus the table margin (`--card-h`); from 640px it is capped at 760px tall.
 
-Inside the face, content is a centred flex column with 84px top and bottom padding (clearing the corner indices) and 36px sides. Corner indices sit 22px in from the card edge. The rhythm down the column: logo (168px wide), 24px, portrait, 20px, name, 8px, role, 3px, company, 26px, Save Contact, 8px, download link, 22px, tiles, 22px, details. Save Contact and the tile row both cap at 320px wide; tiles are up to 100px each with 10px gaps, centred as a group, so one, two or three tiles all read as a set.
+**The Fits-One-Screen Rule.** The card never makes the page scroll on an upright phone or a laptop. Every size on the card is written in `--u`, a card pixel equal to 1px on a 390x844 phone and scaled down by the card's height (`--card-h / 800`) and width (`(100vw - 28px) / 362`). app.js then lowers `--fit` until a long name or address fits. Text and tap targets keep floors (12px small print, a 46px Save Contact, 52px tiles), and `--u` stops at 0.55px, below which the page scrolls (a phone held sideways). Sizes below are at `--u` = 1px.
+
+Inside the face, content is a centred flex column with 60px top and 72px bottom padding (clearing the corner indices) and 36px sides. Corner indices sit 22px in from the card edge. The rhythm down the column: logo (168px wide), 22px, portrait, 20px, name, 8px, role, 3px, company, 24px, Save Contact, 6px, download link, 20px, tiles, 20px, details. Save Contact and the tile row both cap at 320px wide; tiles are up to 100px each with 10px gaps, centred as a group, so one, two or three tiles all read as a set.
 
 **The One Column Rule.** Every element is centred on the card's vertical axis; the only things off-axis are the two corner indices.
 
@@ -217,7 +219,7 @@ Two sides of one card in the same grid cell, so the card is as tall as its talle
 - **Shadow Strategy:** Card on table (see Elevation & Depth).
 - **Border:** 1px Foil Line edge plus 1px Foil Hair inner frame at 8px inset.
 - **Internal Padding:** face 84px by 36px; back 48px by 32px.
-- **Motion:** the deal (700ms, translateY 56px and -5 degrees settling flat), the flip (rotateY 180 degrees over 850ms, settled at 950ms so 3D transforms are dropped), then one glint (1200ms after a 600ms delay, a 105-degree band of pale gold screened across the face). All share the ease-out curve `cubic-bezier(0.16, 1, 0.3, 1)`. Under `prefers-reduced-motion: reduce` there is no deal, flip or glint; the face simply appears.
+- **Motion:** the deal (700ms, from translateY -40px and -3 degrees, settling flat), the flip (rotateY 180 degrees over 850ms, settled at 950ms so 3D transforms are dropped), then one glint (1200ms after a 600ms delay, a 105-degree band of pale gold screened across the face). All share the ease-out curve `cubic-bezier(0.16, 1, 0.3, 1)`. Under `prefers-reduced-motion: reduce` there is no deal, flip or glint; the face simply appears.
 
 ### Card Back (loading and not found)
 - **Style:** the lattice (two 45-degree hairline grids in Foil Gold at 9%, 15px pitch) inside the inner frame, with a 116px ringed emblem holding the spade at its centre.
