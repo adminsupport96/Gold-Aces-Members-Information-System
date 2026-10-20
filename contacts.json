@@ -20,5 +20,16 @@
     "email": "jhaymarievill@gmail.com",
     "photo": "",
     "address": "Brgy. Cansojong, Talisay City, Cebu - SRP"
+  },
+  {
+    "id": "alphie",
+    "firstName": "Gold Aces",
+    "lastName": "Alphie",
+    "title": "Sales Associate",
+    "company": "Gold Aces Car Display Center - Talisay Branch",
+    "phone": "+63 969 133 3761",
+    "email": "alphielloyd2@gmail.com",
+    "photo": "",
+    "address": "Brgy. Cansojong, Talisay City, Cebu - SRP"
   }
 ]
