@@ -92,12 +92,6 @@ components:
     padding: "14px 24px"
     height: "56px"
     width: "320px"
-  link-download:
-    textColor: "{colors.mist}"
-    typography: "{typography.caption}"
-    padding: "6px 10px"
-  link-download-hover:
-    textColor: "{colors.ink}"
   tile-action:
     backgroundColor: "rgb(255 255 255 / 0.025)"
     textColor: "{colors.ink}"
@@ -153,7 +147,7 @@ Two navies for table and card, two golds for foil, one bright yellow kept back f
 - **Card Navy** (#061b30): the card's lacquer at its lower end, and the gap ring between portrait and frame rings.
 - **Card Navy Light** (#1d2b50): the card's lacquer at its upper-left end (160-degree gradient into Card Navy by 62%).
 - **Card Ink** (#f6f3ec): names, titles and tile labels. A warm off-white, never pure white.
-- **Mist** (#c3cadb): role line, card-back detail, download link, small-print details.
+- **Mist** (#c3cadb): role line, card-back detail, small-print details.
 - **Foil Line** (gold light at 55%): the outer card edge and hovered tile borders.
 - **Foil Hair** (gold light at 22%): the inner printed frame and the outermost hairline ring around portrait and emblem.
 
@@ -176,7 +170,7 @@ Two navies for table and card, two golds for foil, one bright yellow kept back f
 - **Button** (700, 1.0625rem, 1): the Save Contact label.
 - **Label** (600, 0.75rem, 1, +0.02em): Call / Email / Website tile labels.
 - **Body** (400, 0.9375rem, 1.45): role line and card-back detail (detail capped at 26ch).
-- **Caption** (500, 0.8125rem): the company line in Foil Gold; the download link uses the same size at 400 in Mist.
+- **Caption** (500, 0.8125rem): the company line in Foil Gold.
 - **Fine Print** (400, 0.84375rem, 1.75, tabular lining numerals): the contact details list, selectable and copyable.
 
 ### Named Rules
@@ -188,7 +182,7 @@ A single centred column on a single card. The table is a full-viewport grid that
 
 **The Fits-One-Screen Rule.** The card never makes the page scroll on an upright phone or a laptop. Every size on the card is written in `--u`, a card pixel equal to 1px on a 390x844 phone and scaled down by the card's height (`--card-h / 800`) and width (`(100vw - 28px) / 362`). app.js then lowers `--fit` until a long name or address fits. Text and tap targets keep floors (12px small print, a 46px Save Contact, 52px tiles), and `--u` stops at 0.55px, below which the page scrolls (a phone held sideways). Sizes below are at `--u` = 1px.
 
-Inside the face, content is a centred flex column with 60px top and 72px bottom padding (clearing the corner indices) and 36px sides. Corner indices sit 22px in from the card edge. The rhythm down the column: logo (168px wide), 22px, portrait, 20px, name, 8px, role, 3px, company, 24px, Save Contact, 6px, download link, 20px, tiles, 20px, details. Save Contact and the tile row both cap at 320px wide; tiles are up to 100px each with 10px gaps, centred as a group, so one, two or three tiles all read as a set.
+Inside the face, content is a centred flex column with 60px top and 72px bottom padding (clearing the corner indices) and 36px sides. Corner indices sit 22px in from the card edge. The rhythm down the column: logo (168px wide), 22px, portrait, 20px, name, 8px, role, 3px, company, 24px, Save Contact, 20px, tiles, 20px, details. Save Contact and the tile row both cap at 320px wide; tiles are up to 100px each with 10px gaps, centred as a group, so one, two or three tiles all read as a set.
 
 **The One Column Rule.** Every element is centred on the card's vertical axis; the only things off-axis are the two corner indices.
 
@@ -236,8 +230,6 @@ Two sides of one card in the same grid cell, so the card is as tall as its talle
 - **Primary (Save Contact):** vertical foil gradient from Foil Gold Light to Foil Gold, Table Navy label in Button type, a 22px outline user-plus icon 10px before the label, 14px by 24px padding.
 - **Hover / Focus / Active:** brightness 1.05 on hover (hover-capable devices only); a 2px Ace Highlight focus outline at 3px offset; press scales to 0.98 at brightness 0.95.
 - **Not ready:** before the contact file is prepared the link has no href and shows at 55% opacity, ignoring taps.
-- **Secondary (Download contact file):** a text link in Mist, Caption size, underlined at 50% Mist with 3px offset, 6px by 10px padding for a larger target; Card Ink on hover. Same not-ready treatment.
-
 ### Action Tiles
 - **Style:** 72px-tall tiles, 14px corners, 1px border in Foil Gold Light at 32%, a 2.5% white wash, a 22px outline icon in Foil Gold Light over a Label-type caption in Card Ink.
 - **States:** hover raises the border to Foil Line and the wash to gold at 6%; press scales to 0.97 with gold at 8%. A tile is omitted entirely when the contact lacks that field.

@@ -63,8 +63,6 @@ Write that URL onto the person's NFC tag or QR code. If the `id` is missing or d
 - **iPhone / iPad:** opens the contact file (vCard, with photo), which shows the "Create New Contact" screen. This also works inside apps' built-in browsers such as Messenger and Facebook.
 - **Android and computers:** downloads the contact file, and the card says "Contact file downloaded. Open it to add the contact to your phone." Tapping the downloaded file opens the Contacts app. Browsers don't let a web page open the Contacts app directly, so this extra tap can't be avoided.
 
-The small **Download contact file** link under the button always downloads the vCard (with photo). Use it if the main button doesn't work in a particular browser.
-
 ## Brand fonts and logo
 
 The card uses Gold Aces navy and gold. Its fonts are Montserrat (names, buttons) and Poppins (text), standing in for the brand fonts Bernoru and Flama, which are paid fonts. To switch to the brand fonts, add licensed web font files named exactly `fonts/bernoru.woff2` and `fonts/flama.woff2`; the card picks them up automatically.

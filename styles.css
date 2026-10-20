@@ -323,16 +323,6 @@ body {
 .save-button:active { transform: scale(0.98); filter: brightness(0.95); }
 .save-button svg { width: max(19px, calc(22 * var(--u))); height: max(19px, calc(22 * var(--u))); stroke-width: 1.8; }
 
-.download-link {
-  margin-top: calc(6 * var(--u));
-  padding: calc(6 * var(--u)) 10px;   /* bigger tap target */
-  color: var(--mist);
-  font-size: max(12px, calc(13 * var(--u)));
-  text-decoration: underline;
-  text-decoration-color: rgb(195 202 219 / 0.5);
-  text-underline-offset: 3px;
-}
-
 /* Shown after a download: what to do with the file */
 .save-status {
   margin: calc(4 * var(--u)) 0 0;
@@ -341,10 +331,9 @@ body {
   font-size: max(12px, calc(13 * var(--u)));
 }
 
-/* Until app.js gives the save links an href (while the contact file is
-   being prepared), show them dimmed and ignore taps. */
-.save-button:not([href]),
-.download-link:not([href]) {
+/* Until app.js gives Save Contact an href (while the contact file is
+   being prepared), show it dimmed and ignore taps. */
+.save-button:not([href]) {
   opacity: 0.55;
   pointer-events: none;
 }
@@ -386,7 +375,6 @@ body {
 @media (hover: hover) {
   .save-button:hover { filter: brightness(1.05); }
   .action:hover { border-color: var(--foil-line); background: rgb(252 215 123 / 0.06); }
-  .download-link:hover { color: var(--ink); }
 }
 
 /* The details as small print */

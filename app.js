@@ -8,7 +8,6 @@
  *    generated here, including the photo:
  *      - iPhone/iPad:        opens it, which shows the "Create New Contact" screen
  *      - Android/computers:  downloads it; opening the file adds the contact
- *    The "Download contact file" link always downloads the file.
  *
  * To add a person, edit contacts.json and put their photo in /images/.
  * Nothing in this file needs to change.
@@ -51,7 +50,7 @@ async function main() {
   }
 
   renderCard(contact);
-  await setUpSaveButtons(contact);
+  await setUpSaveButton(contact);
 }
 
 /* ==========================================================================
@@ -175,35 +174,27 @@ function showText(elementId, text) {
 }
 
 /* ==========================================================================
-   Save Contact buttons
+   Save Contact button
    ========================================================================== */
 
-async function setUpSaveButtons(contact) {
+async function setUpSaveButton(contact) {
   const saveButton = byId('save-button');
-  const downloadLink = byId('download-link');
-  const fileName = contact.id + '.vcf';
 
   // Build the vCard (this loads the photo, so it takes a moment).
   const vcard = await buildVCard(contact);
   const blob = new Blob([vcard], { type: 'text/vcard' });
-  const fileUrl = URL.createObjectURL(blob);
-
-  // "Download contact file" link: always downloads e.g. "jane-doe.vcf".
-  downloadLink.href = fileUrl;
-  downloadLink.download = fileName;
-  downloadLink.addEventListener('click', showDownloadedMessage);
 
   if (isIOS()) {
     // iPhone/iPad: open the vCard, which shows the "Create New Contact" screen.
     // A data: URL is used because apps' built-in browsers (Messenger,
-    // Facebook, Chrome on iPhone) can't open the temporary file URL above.
+    // Facebook, Chrome on iPhone) can't open a temporary file (blob:) URL.
     saveButton.href = await toDataUrl(blob);
   } else {
-    // Android and computers: download the file. Phones then offer to open it,
-    // which adds the contact. (Browsers don't allow a web page to open the
-    // Contacts app directly.)
-    saveButton.href = fileUrl;
-    saveButton.download = fileName;
+    // Android and computers: download the file, e.g. "jane-doe.vcf". Phones
+    // then offer to open it, which adds the contact. (Browsers don't allow a
+    // web page to open the Contacts app directly.)
+    saveButton.href = URL.createObjectURL(blob);
+    saveButton.download = contact.id + '.vcf';
     saveButton.addEventListener('click', showDownloadedMessage);
   }
 }
