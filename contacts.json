@@ -7,6 +7,18 @@
     "company": "Gold Aces Car Display Center",
     "phone": "+63 967 093 8974",
     "email": "admin.support@goldaces.ph",
-    "photo": "images/oneal.jpg"
+    "photo": "images/oneal.jpg",
+    "address": "Jamestown, Mantawi Drive, Tipolo, Mandaue City, 6014 Cebu"
+  },
+  {
+    "id": "jhay",
+    "firstName": "Gold Aces",
+    "lastName": "Jhay",
+    "title": "Sales Associate",
+    "company": "Gold Aces Car Display Center - Talisay Branch",
+    "phone": "+63 945 684 1899",
+    "email": "jhaymarievill@gmail.com",
+    "photo": "",
+    "address": "Brgy. Cansojong, Talisay City, Cebu - SRP"
   }
 ]
