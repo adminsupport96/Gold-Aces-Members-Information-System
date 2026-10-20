@@ -4,10 +4,9 @@
  * 1. Reads the person's id from the URL, e.g. index.html?id=jane-doe
  * 2. Looks that id up in contacts.json
  * 3. Fills in the card in index.html, hiding any field the contact doesn't have
- * 4. Sets up the "Save Contact" button with a contact file (vCard, .vcf)
- *    generated here, including the photo:
- *      - iPhone/iPad:        opens it, which shows the "Create New Contact" screen
- *      - Android/computers:  downloads it; opening the file adds the contact
+ * 4. Sets up the "Save Contact" button to download a contact file (vCard,
+ *    .vcf) generated here, including the photo. Opening the file adds the
+ *    contact, on iPhone and Android alike.
  *
  * To add a person, edit contacts.json and put their photo in /images/.
  * Nothing in this file needs to change.
@@ -184,19 +183,13 @@ async function setUpSaveButton(contact) {
   const vcard = await buildVCard(contact);
   const blob = new Blob([vcard], { type: 'text/vcard' });
 
-  if (isIOS()) {
-    // iPhone/iPad: open the vCard, which shows the "Create New Contact" screen.
-    // A data: URL is used because apps' built-in browsers (Messenger,
-    // Facebook, Chrome on iPhone) can't open a temporary file (blob:) URL.
-    saveButton.href = await toDataUrl(blob);
-  } else {
-    // Android and computers: download the file, e.g. "jane-doe.vcf". Phones
-    // then offer to open it, which adds the contact. (Browsers don't allow a
-    // web page to open the Contacts app directly.)
-    saveButton.href = URL.createObjectURL(blob);
-    saveButton.download = contact.id + '.vcf';
-    saveButton.addEventListener('click', showDownloadedMessage);
-  }
+  // Download the file, e.g. "jane-doe.vcf", on every device. Phones then
+  // offer to open it, which adds the contact. (Browsers don't allow a web
+  // page to open the Contacts app directly, and Chrome on iPhone ignores
+  // links that try to open the contact file without downloading it.)
+  saveButton.href = URL.createObjectURL(blob);
+  saveButton.download = contact.id + '.vcf';
+  saveButton.addEventListener('click', showDownloadedMessage);
 }
 
 // After a download, tell the person what to do next, so the button never
@@ -204,22 +197,6 @@ async function setUpSaveButton(contact) {
 function showDownloadedMessage() {
   showText('save-status', 'Contact file downloaded. Open it to add the contact to your phone.');
   fitCardToScreen();
-}
-
-function isIOS() {
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-    // iPads report themselves as a Mac but have a touch screen.
-    (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
-}
-
-// Turns a file into a data: URL (the file's contents written into the link itself).
-function toDataUrl(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(reader.error);
-    reader.readAsDataURL(blob);
-  });
 }
 
 /* ---------- vCard 3.0 ---------- */

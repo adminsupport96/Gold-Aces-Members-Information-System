@@ -60,8 +60,9 @@ Write that URL onto the person's NFC tag or QR code. If the `id` is missing or d
 
 ## How "Save Contact" works
 
-- **iPhone / iPad:** opens the contact file (vCard, with photo), which shows the "Create New Contact" screen. This also works inside apps' built-in browsers such as Messenger and Facebook.
-- **Android and computers:** downloads the contact file, and the card says "Contact file downloaded. Open it to add the contact to your phone." Tapping the downloaded file opens the Contacts app. Browsers don't let a web page open the Contacts app directly, so this extra tap can't be avoided.
+On every device (iPhone, iPad, Android and computers), the button downloads the contact file (vCard, with photo), and the card says "Contact file downloaded. Open it to add the contact to your phone." Tapping the downloaded file opens the Contacts app. Browsers don't let a web page open the Contacts app directly, so this extra tap can't be avoided.
+
+An earlier version opened the contact directly on iPhone instead of downloading it. That did nothing in Chrome on iPhone, so the button now downloads everywhere.
 
 ## Brand fonts and logo
 
