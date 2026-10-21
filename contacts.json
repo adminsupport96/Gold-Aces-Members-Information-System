@@ -31,5 +31,16 @@
     "email": "alphielloyd2@gmail.com",
     "photo": "",
     "address": "Brgy. Cansojong, Talisay City, Cebu - SRP"
+  },
+  {
+    "id": "faith",
+    "firstName": "Gold Aces",
+    "lastName": "Faith",
+    "title": "Sales Associate",
+    "company": "Gold Aces Car Display Center - Talisay Branch",
+    "phone": "+63 927 930 1127",
+    "email": "samgaviola.goldaces@gmail.com",
+    "photo": "",
+    "address": "Brgy. Cansojong, Talisay City, Cebu - SRP"
   }
 ]
