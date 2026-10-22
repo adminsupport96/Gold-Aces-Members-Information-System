@@ -37,10 +37,21 @@
     "firstName": "Gold Aces",
     "lastName": "Faith",
     "title": "Sales Associate",
-    "company": "Gold Aces Car Display Center - Talisay Branch",
+    "company": "Gold Aces Car Display Center - Mandaue Branch",
     "phone": "+63 927 930 1127",
     "email": "samgaviola.goldaces@gmail.com",
     "photo": "images/faith.jpg",
+    "address": "Jamestown, Mantawi Drive, Tipolo, Mandaue City, 6014 Cebu"
+  },
+  {
+    "id": "jade",
+    "firstName": "Gold Aces",
+    "lastName": "Jade",
+    "title": "Sales Associate",
+    "company": "Gold Aces Car Display Center - Mandaue Branch",
+    "phone": "+63 927 209 6831",
+    "email": "jadeatentar123@gmail.com",
+    "photo": "images/jade.jpg",
     "address": "Jamestown, Mantawi Drive, Tipolo, Mandaue City, 6014 Cebu"
   }
 ]
