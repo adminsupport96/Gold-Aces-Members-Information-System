@@ -53,5 +53,16 @@
     "email": "jadeatentar123@gmail.com",
     "photo": "images/jade.jpg",
     "address": "Jamestown, Mantawi Drive, Tipolo, Mandaue City, 6014 Cebu"
+  },
+  {
+    "id": "maffie",
+    "firstName": "Gold Aces",
+    "lastName": "Maffie",
+    "title": "Sales Associate",
+    "company": "Gold Aces Car Display Center - Mandaue Branch",
+    "phone": "+63 0927 285 9917",
+    "email": "maffie.goldaces@gmail.com",
+    "photo": "images/maffie.jpg",
+    "address": "Jamestown, Mantawi Drive, Tipolo, Mandaue City, 6014 Cebu"
   }
 ]
